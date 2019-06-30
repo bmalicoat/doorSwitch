@@ -1,0 +1,6 @@
+{
+    "idleTimeout": 3000,
+    "port": 80,
+    "socketUpdateInterval": 1500,
+    "updateInterval": 100
+  }

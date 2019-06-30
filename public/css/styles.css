@@ -1,0 +1,28 @@
+body {
+    background: rgb(255, 255, 255);
+    background-image: radial-gradient(#466A97 3%, transparent 4%), radial-gradient(#466A97 3%, transparent 4%);
+    background-size: 15px 15px;
+    margin: 0;
+    font-family: 'Nova Mono', sans-serif;
+    font-size: 13px;
+    color: rgb(0, 0, 0);
+    line-height: 1.4;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+  }
+
+.imageContainer {
+    height: 600px;
+    width: 344px;
+    position: relative;
+}
+
+.data {
+    margin-left:20px;
+}
+
+#icon{
+    height: 40px;
+}
