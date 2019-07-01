@@ -90,6 +90,14 @@ let sendRgbData = function (r, g, b) {
     });
 };
 
+app.get('/registerRGB', (req, res) => {
+    if (!rgbIps.includes(req.query.ip)) {
+        rgbIps.push(req.query.ip);
+    }
+
+    res.sendStatus(200);
+});
+
 app.get('/update', (req, res) => {
     exec('git checkout -- . && git pull', {
         cwd: __dirname
@@ -134,19 +142,14 @@ process.on('SIGCONT', shutdown);
 process.on('SIGTERM', shutdown);
 
 function shutdown() {
+    pigpio.terminate();
     process.exit(0);
 };
 
 let ipaddress;
 
 client.on('response', function inResponse(headers, code, rinfo) {
-    // console.log(`${headers.ST} - ${rinfo.address}`);
-    // var opts = {
-    //     url: `http://${rinfo.address}/printer/printText?text=Gashapon IP Address:${ipaddress}`,
-    // };
-
-    // request(opts, function (err, res, body) {
-    // });
+    rgbIps.push(rinfo.address);
 });
 
 setTimeout(() => {
