@@ -155,5 +155,5 @@ client.on('response', function inResponse(headers, code, rinfo) {
 setTimeout(() => {
     ipaddress = ip.address();
     console.log(`Door Switch Ready! at ${ipaddress}`);
-    client.search('vvs:rgb');
+    client.search('vvs:rgb:airLockSign');
 }, 10 * 1000);
