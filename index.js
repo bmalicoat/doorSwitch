@@ -81,18 +81,24 @@ doorSwitch.on('interrupt', (level) => {
 
 let sendRgbData = function (r, g, b) {
     (rgbIps || []).forEach(ip => {
+        let url = `http://${ip}/color?r=${r}&g=${g}&b=${b}`;
         var opts = {
-            url: `http://${ip}/color?r=${r}&g=${g}&b=${b}`,
+            url: url,
         };
 
+        console.log(`sending request ${url}`)
         request(opts, function (err, res, body) {
         });
     });
 };
 
 app.get('/registerRGB', (req, res) => {
+    console.log(`received request to register ${req.query.ip}`);
+
     if (!rgbIps.includes(req.query.ip)) {
         rgbIps.push(req.query.ip);
+
+        console.log('added new ip');
     }
 
     res.sendStatus(200);
@@ -149,6 +155,7 @@ function shutdown() {
 let ipaddress;
 
 client.on('response', function inResponse(headers, code, rinfo) {
+    console.log(`found airlocksign ${rinfo.address}`);
     rgbIps.push(rinfo.address);
 });
 
